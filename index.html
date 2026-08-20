@@ -46,13 +46,7 @@
       .btn-dark { color: #fff; background: var(--ink); }
       .btn-dark:hover { background: var(--blue-deep); }
 
-      .topbar { display: none; }
-      .topbar-inner { min-height: 37px; display: flex; justify-content: space-between; align-items: center; color: #e8eff2; font: 700 .61rem/1 "Space Grotesk", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
-      .topbar-inner p, .topbar-inner a { display: flex; align-items: center; gap: 8px; margin: 0; }
-      .topbar-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(35, 133, 238, .14); }
-      .phone-symbol { color: #80baff; font-size: .82rem; }
-
-      .site-header { position: relative; z-index: 10; border-bottom: 1px solid rgba(16, 32, 42, .1); background: #f6f7f4; }
+      .site-header { position: relative; z-index: 10; border-bottom: 0; background: #f6f7f4; }
       .header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); grid-template-areas: "brand nav action"; align-items: center; column-gap: 28px; min-height: 82px; }
       .brand { grid-area: brand; display: inline-flex; align-items: center; gap: 12px; min-width: max-content; }
       .brand-mark { position: relative; display: grid; place-items: center; width: 46px; height: 46px; overflow: hidden; border: 3px solid var(--ink); border-radius: 50%; background: #f7f8f5; box-shadow: 4px 4px 0 var(--blue); }
@@ -252,13 +246,6 @@
     </style>
   </head>
   <body>
-    <div class="topbar">
-      <div class="frame topbar-inner">
-        <p><span class="topbar-dot"></span> Groningen &amp; omgeving</p>
-        <a href="tel:+31638738226"><span class="phone-symbol">☎</span> +31 6 38738226</a>
-      </div>
-    </div>
-
     <header class="site-header">
       <div class="frame header-inner">
         <a class="brand" href="#top" aria-label="J.C. Drukreinigers — home">
