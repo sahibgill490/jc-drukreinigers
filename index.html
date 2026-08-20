@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Professionele drukreiniging voor terrassen, opritten en tuinpaden in Groningen en omgeving." />
+    <meta name="theme-color" content="#10202a" />
+    <link rel="icon" href="assets/jc-pressure-gauge-logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <title>J.C. Drukreinigers | Groningen</title>
+    <style>
+      :root {
+        --ink: #10202a;
+        --ink-soft: #1a2e3a;
+        --blue: #2385ee;
+        --blue-deep: #0f64bf;
+        --stone: #e7e9e4;
+        --cloud: #f6f7f4;
+        --line: rgba(16, 32, 42, 0.16);
+        --white: #fff;
+        --frame: min(1180px, calc(100vw - 48px));
+        --ease: cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+      body { margin: 0; color: var(--ink); background: var(--cloud); font-family: "DM Sans", sans-serif; }
+      body.menu-open { overflow: hidden; }
+      a { color: inherit; text-decoration: none; }
+      button, input, select, textarea { font: inherit; }
+      button, a { -webkit-tap-highlight-color: transparent; }
+      .frame { width: var(--frame); margin: auto; }
+      .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--blue); font: 700 .66rem/1 "Space Grotesk", sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+      .eyebrow::before { content: ""; width: 30px; height: 2px; background: currentColor; }
+      .display { margin: 0; font: 700 clamp(2.65rem, 5.9vw, 5.5rem)/.92 "Space Grotesk", sans-serif; letter-spacing: -.075em; }
+      .display i { color: var(--blue); font-weight: 500; }
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 22px; border: 1px solid transparent; font: 700 .7rem/1 "Space Grotesk", sans-serif; letter-spacing: .04em; text-transform: uppercase; transition: transform .16s var(--ease), background .16s var(--ease), color .16s var(--ease); }
+      .btn:active { transform: scale(.97); }
+      .btn-blue { color: #fff; background: var(--blue); clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%); padding-right: 28px; }
+      .btn-blue:hover { background: #0876ed; }
+      .btn-outline { color: #fff; border-color: rgba(255, 255, 255, .52); }
+      .btn-outline:hover { border-color: #fff; background: rgba(255, 255, 255, .08); }
+      .btn-dark { color: #fff; background: var(--ink); }
+      .btn-dark:hover { background: var(--blue-deep); }
+
+      .topbar { background: #0d1a22; color: #fff; }
+      .topbar-inner { min-height: 37px; display: flex; justify-content: space-between; align-items: center; color: #e8eff2; font: 700 .61rem/1 "Space Grotesk", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+      .topbar-inner p, .topbar-inner a { display: flex; align-items: center; gap: 8px; margin: 0; }
+      .topbar-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(35, 133, 238, .14); }
+      .phone-symbol { font-size: .92rem; transform: rotate(-20deg); }
+
+      .site-header { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid rgba(16, 32, 42, .08); background: rgba(246, 247, 244, .96); backdrop-filter: blur(14px); }
+      .header-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; min-width: max-content; }
+      .brand img { width: 47px; height: 47px; object-fit: contain; filter: drop-shadow(0 1px 0 rgba(16, 32, 42, .18)); }
+      .brand-text { display: flex; flex-direction: column; gap: 5px; line-height: .76; }
+      .brand-text strong { font: 700 1.55rem/.7 "Space Grotesk", sans-serif; letter-spacing: -.1em; }
+      .brand-text span { font: 700 .48rem/1 "Space Grotesk", sans-serif; letter-spacing: .135em; }
+      .nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 39px); margin-left: auto; }
+      .nav a { font: 700 .69rem/1 "Space Grotesk", sans-serif; letter-spacing: .025em; }
+      .nav a:hover { color: var(--blue-deep); }
+      .header-cta { display: inline-flex; align-items: center; gap: 8px; padding: 15px 17px; color: #fff; background: var(--ink); font: 700 .66rem/1 "Space Grotesk", sans-serif; letter-spacing: .035em; text-transform: uppercase; }
+      .menu-toggle { display: none; width: 43px; height: 43px; border: 0; color: #fff; background: var(--ink); font-size: 1.45rem; }
+      .mobile-nav { display: none; }
+
+      .hero { min-height: min(735px, calc(100svh - 37px)); position: relative; overflow: hidden; background: #0d1921; color: #fff; }
+      .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.82); }
+      .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8, 18, 26, .96) 0%, rgba(8, 18, 26, .83) 34%, rgba(8, 18, 26, .13) 76%, rgba(8, 18, 26, .06) 100%); }
+      .hero-cut { position: absolute; z-index: 1; right: -9%; bottom: 0; width: 42%; height: 100%; background: rgba(35, 133, 238, .22); clip-path: polygon(44% 0, 100% 0, 100% 100%, 0 100%); mix-blend-mode: screen; }
+      .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; min-height: min(735px, calc(100svh - 37px)); max-width: 820px; padding: 120px 0 130px; }
+      .hero .eyebrow { color: #b7d7ff; margin-bottom: 27px; }
+      .hero .display { max-width: 790px; font-size: clamp(3.3rem, 7vw, 6.6rem); }
+      .hero .display i { color: #66aaff; }
+      .hero-copy { max-width: 495px; margin: 25px 0 31px; color: #d2dde2; font-size: clamp(.95rem, 1.5vw, 1.08rem); line-height: 1.7; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; }
+      .rating { position: absolute; z-index: 3; right: max(24px, calc((100vw - var(--frame)) / 2)); bottom: 51px; display: flex; align-items: center; gap: 13px; padding: 17px 19px; color: var(--ink); background: #fff; }
+      .rating strong { font: 700 2.1rem/1 "Space Grotesk", sans-serif; letter-spacing: -.08em; }
+      .rating-label { display: block; margin-bottom: 4px; font: 700 .48rem/1 "Space Grotesk", sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+      .stars { color: var(--blue); font-size: .73rem; letter-spacing: 1px; }
+      .scroll-link { position: absolute; z-index: 3; left: max(24px, calc((100vw - var(--frame)) / 2)); bottom: 45px; display: flex; align-items: center; gap: 10px; color: #d7e7f3; font: 700 .59rem/1 "Space Grotesk", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+      .scroll-arrow { font-size: 1.35rem; animation: float 1.7s var(--ease) infinite alternate; }
+      @keyframes float { to { transform: translateY(5px); } }
+
+      .proof { color: #fff; background: var(--blue); }
+      .proof-inner { min-height: 74px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: center; }
+      .proof-item { display: flex; justify-content: center; align-items: center; gap: 11px; margin: 0; font: 700 .61rem/1 "Space Grotesk", sans-serif; letter-spacing: .075em; text-transform: uppercase; }
+      .proof-check { font-size: 1rem; }
+
+      .intro { position: relative; padding: 133px 0 145px; background: var(--cloud); overflow: hidden; }
+      .intro::after { content: "SURFACE / RESTORED"; position: absolute; right: 5%; bottom: 35px; color: rgba(16, 32, 42, .23); font: 700 .5rem/1 "Space Grotesk", sans-serif; letter-spacing: .17em; transform: rotate(-7deg); }
+      .intro-grid { display: grid; grid-template-columns: 1.1fr 1.55fr .9fr; align-items: start; gap: 55px; }
+      .intro-copy .display { margin: 18px 0 25px; font-size: clamp(2.85rem, 5.3vw, 5rem); }
+      .kicker { margin: 0; color: var(--blue-deep); font: 700 .68rem/1 "Space Grotesk", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+      .body-copy { max-width: 490px; color: #5b6870; font-size: .98rem; line-height: 1.8; }
+      .text-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; color: var(--blue-deep); font: 700 .67rem/1 "Space Grotesk", sans-serif; letter-spacing: .055em; text-transform: uppercase; }
+      .text-link:hover { gap: 16px; }
+      .info-stack { display: grid; gap: 14px; padding-top: 43px; }
+      .info-card { padding: 22px; border-top: 3px solid var(--ink); background: #fff; }
+      .info-card span { display: block; margin-bottom: 12px; color: #76818a; font: 700 .56rem/1 "Space Grotesk", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+      .info-card a { font: 600 .95rem/1.3 "Space Grotesk", sans-serif; }
+      .info-card-blue { color: #fff; border-color: var(--blue); background: var(--blue); }
+      .info-card-blue span { color: #d8e9ff; }
+
+      .services { position: relative; padding: 123px 0 129px; overflow: hidden; color: #fff; background: var(--ink); border-top: 7px solid var(--blue); }
+      .services::before { content: ""; position: absolute; top: 63px; right: 0; width: 61vw; height: 1px; background: rgba(255, 255, 255, .16); }
+      .services::after { content: ""; position: absolute; top: -21px; right: -8%; width: 35%; height: 42px; background: var(--blue); transform: skewX(-28deg); }
+      .services-head { display: grid; grid-template-columns: 1.1fr 1.55fr .9fr; gap: 55px; align-items: end; margin-bottom: 64px; }
+      .services-head .eyebrow { color: #87bdff; }
+      .services-head .display { font-size: clamp(2.85rem, 5.15vw, 4.85rem); }
+      .services-head p { margin: 0 0 6px; color: #b3c0c6; font-size: .89rem; line-height: 1.75; }
+      .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .service-card { background: #172b36; }
+      .service-image { position: relative; height: 286px; overflow: hidden; border-bottom: 4px solid var(--blue); }
+      .service-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.77); transition: transform .5s var(--ease); }
+      .service-card:hover .service-image img { transform: scale(1.06); }
+      .service-image::before { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(145deg, rgba(35, 133, 238, .25), transparent 50%, rgba(5, 10, 15, .4)); }
+      .service-image::after { content: ""; position: absolute; z-index: 2; bottom: -11px; left: -8%; width: 77%; height: 23px; background: var(--blue); transform: skewX(-32deg); }
+      .service-number, .service-proof { position: absolute; z-index: 3; color: #fff; font: 700 .55rem/1 "Space Grotesk", sans-serif; letter-spacing: .1em; }
+      .service-number { top: 15px; left: 16px; padding: 8px 9px; background: var(--blue); }
+      .service-proof { right: 14px; bottom: 15px; text-shadow: 0 1px 8px rgba(0, 0, 0, .7); }
+      .service-body { padding: 26px 25px 29px; }
+      .service-body h3 { margin: 0 0 12px; font: 700 1.5rem/1 "Space Grotesk", sans-serif; letter-spacing: -.06em; }
+      .service-body p { min-height: 50px; margin: 0; color: #b8c5ca; font-size: .82rem; line-height: 1.72; }
+      .service-result { display: flex; align-items: center; gap: 7px; margin: 18px 0; padding: 11px 0 0; color: #91c0f8; border-top: 1px solid rgba(255, 255, 255, .14); font: 700 .53rem/1.3 "Space Grotesk", sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+      .service-link { display: inline-flex; gap: 8px; align-items: center; color: #8cc1ff; font: 700 .63rem/1 "Space Grotesk", sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+
+      .process { position: relative; padding: 130px 0; background: #dfe3dd; }
+      .process::before { content: ""; position: absolute; top: 0; left: -2vw; width: 31vw; height: 8px; background: var(--blue); transform: skewX(-32deg); }
+      .process-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: clamp(60px, 13vw, 170px); }
+      .process-copy .display { margin: 20px 0; font-size: clamp(3rem, 5.1vw, 4.9rem); }
+      .process-copy p { max-width: 330px; color: #56646a; font-size: .95rem; line-height: 1.75; }
+      .process-list { display: grid; gap: 0; padding: 0; margin: 0; list-style: none; }
+      .process-list li { display: grid; grid-template-columns: 51px 1fr; gap: 22px; padding: 22px 0; border-bottom: 1px solid rgba(16, 32, 42, .19); }
+      .process-list li:first-child { border-top: 1px solid rgba(16, 32, 42, .19); }
+      .step-number { display: grid; place-items: center; width: 38px; height: 38px; color: var(--blue-deep); border: 1px solid var(--blue); border-radius: 50%; font: 700 .81rem/1 "Space Grotesk", sans-serif; }
+      .process-list h3 { margin: 0 0 8px; font: 700 1.2rem/1 "Space Grotesk", sans-serif; letter-spacing: -.045em; }
+      .process-list p { max-width: 370px; margin: 0; color: #68747a; font-size: .84rem; line-height: 1.65; }
+
+      .area { position: relative; padding: 124px 0; overflow: hidden; color: #fff; background: #182832; }
+      .area::after { content: "GRONINGEN / DRUKREINIGING"; position: absolute; bottom: 25px; left: 3%; color: rgba(126, 181, 246, .51); font: 700 .5rem/1 "Space Grotesk", sans-serif; letter-spacing: .17em; }
+      .area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(56px, 12vw, 155px); align-items: center; }
+      .area .eyebrow { color: #8dbfff; }
+      .area .display { margin: 18px 0 24px; font-size: clamp(3rem, 5.5vw, 5.2rem); }
+      .area-copy > p { max-width: 385px; color: #b7c4c9; font-size: .93rem; line-height: 1.75; }
+      .area .text-link { color: #9dccff; }
+      .map-card { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 362px; padding: 28px; overflow: hidden; color: var(--ink); background: #e6e9e4; box-shadow: 15px 16px 0 #10202a; }
+      .map-card::before, .map-card::after { content: ""; position: absolute; width: 155%; height: 1px; background: rgba(16, 32, 42, .18); transform: rotate(-22deg); }
+      .map-card::before { top: 37%; left: -30%; }
+      .map-card::after { top: 58%; left: -25%; transform: rotate(23deg); }
+      .coordinates { position: absolute; top: 22px; right: 23px; color: #5f6d70; font: 700 .5rem/1 "Space Grotesk", sans-serif; letter-spacing: .1em; }
+      .pin { position: absolute; top: 41%; left: 51%; z-index: 2; display: grid; place-items: center; width: 58px; height: 58px; color: #fff; border-radius: 50% 50% 50% 0; background: var(--blue); box-shadow: 0 10px 25px rgba(15, 100, 191, .3); transform: rotate(-45deg); }
+      .pin span { font-size: 1.25rem; transform: rotate(45deg); }
+      .map-name { position: relative; z-index: 1; margin-bottom: 20px; font: 700 clamp(2.8rem, 7vw, 4.7rem)/.8 "Space Grotesk", sans-serif; letter-spacing: -.095em; }
+      .map-address { position: relative; z-index: 1; display: inline-flex; align-items: flex-start; gap: 9px; width: max-content; padding: 13px 14px; color: #fff; background: var(--ink); font: 600 .69rem/1.45 "Space Grotesk", sans-serif; }
+      .map-address small { color: #9eabb1; font-weight: 500; }
+
+      .quote { position: relative; padding: 133px 0; overflow: hidden; background: var(--cloud); }
+      .quote::before { content: ""; position: absolute; top: 43px; left: -4%; width: 39%; height: 11px; background: var(--blue); transform: skewX(-31deg); }
+      .quote-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(50px, 11vw, 145px); align-items: center; }
+      .quote-copy .display { margin: 20px 0; font-size: clamp(2.75rem, 5vw, 4.75rem); }
+      .quote-copy > p { max-width: 405px; color: #56636a; font-size: .94rem; line-height: 1.78; }
+      .surface-note { display: grid; gap: 7px; max-width: 395px; margin: 25px 0; padding-left: 14px; border-left: 3px solid var(--blue); }
+      .surface-note span { color: var(--blue-deep); font: 700 .53rem/1 "Space Grotesk", sans-serif; letter-spacing: .11em; }
+      .surface-note b { font: 600 .86rem/1.4 "Space Grotesk", sans-serif; letter-spacing: -.025em; }
+      .contact-link { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); font: 700 .78rem/1 "Space Grotesk", sans-serif; }
+      .contact-link:hover { color: var(--blue-deep); }
+      .quote-form { position: relative; padding: clamp(25px, 4vw, 46px); background: #fff; border-top: 4px solid var(--blue); box-shadow: 16px 16px 0 #d7ddd6; }
+      .quote-form::after { content: "STUUR EEN FOTO / KRIJG EEN DUIDELIJKE INDICATIE"; position: absolute; top: -23px; right: 0; color: #66737a; font: 700 .47rem/1 "Space Grotesk", sans-serif; letter-spacing: .095em; }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+      .quote-form label { display: grid; gap: 8px; margin-bottom: 17px; }
+      .quote-form label > span { color: #30424c; font: 700 .62rem/1 "Space Grotesk", sans-serif; letter-spacing: .045em; }
+      .quote-form small { color: #849197; font-weight: 500; }
+      .quote-form input, .quote-form select, .quote-form textarea { width: 100%; padding: 12px 0; color: var(--ink); border: 0; border-bottom: 1px solid #b7c0bd; outline: 0; background: transparent; font: 500 .86rem/1.4 "DM Sans", sans-serif; transition: border-color .18s var(--ease); }
+      .quote-form select { cursor: pointer; }
+      .quote-form textarea { resize: vertical; min-height: 88px; }
+      .quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus { border-color: var(--blue); }
+      .quote-form input::placeholder, .quote-form textarea::placeholder { color: #8f9b9f; }
+      .form-submit { width: 100%; margin-top: 4px; cursor: pointer; }
+      .form-note { display: flex; gap: 7px; align-items: center; margin: 17px 0 0; color: #718086; font-size: .66rem; line-height: 1.5; }
+
+      .footer { color: #d3dce0; background: #0f1c24; }
+      .footer-top { display: flex; align-items: center; justify-content: space-between; padding: 36px 0; border-bottom: 1px solid rgba(255, 255, 255, .14); }
+      .footer .brand { color: #fff; }
+      .footer .brand img { width: 42px; height: 42px; }
+      .footer-call { display: inline-flex; align-items: center; gap: 10px; color: #a9d1ff; font: 700 .65rem/1 "Space Grotesk", sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+      .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0; color: #94a3a9; font-size: .65rem; }
+      .footer-bottom p { margin: 0; }
+
+      @media (max-width: 850px) {
+        :root { --frame: min(100% - 36px, 1180px); }
+        .nav, .header-cta { display: none; }
+        .menu-toggle { display: grid; place-items: center; margin-left: auto; cursor: pointer; }
+        .mobile-nav { position: fixed; z-index: 9; top: 115px; right: 0; left: 0; display: grid; gap: 17px; padding: 28px max(18px, calc((100vw - var(--frame)) / 2)) 31px; background: var(--cloud); border-bottom: 1px solid var(--line); transform: translateY(-130%); transition: transform .28s var(--ease); }
+        .mobile-nav.open { transform: translateY(0); }
+        .mobile-nav a { font: 700 1rem/1 "Space Grotesk", sans-serif; }
+        .intro-grid, .services-head { grid-template-columns: 1fr 1.55fr; }
+        .intro-grid > .info-stack, .services-head > p { display: none; }
+        .process-grid, .area-grid, .quote-grid { gap: 55px; }
+        .hero { min-height: 690px; }
+        .hero-content { min-height: 690px; }
+      }
+
+      @media (max-width: 640px) {
+        :root { --frame: calc(100vw - 36px); }
+        .topbar-inner { min-height: 35px; font-size: .48rem; }
+        .topbar-inner a { letter-spacing: .04em; }
+        .header-inner { min-height: 69px; }
+        .brand img { width: 42px; height: 42px; }
+        .brand-text strong { font-size: 1.38rem; }
+        .mobile-nav { top: 104px; }
+        .hero { min-height: 660px; }
+        .hero-content { min-height: 660px; justify-content: flex-start; padding-top: 94px; }
+        .hero-image { object-position: 61% center; }
+        .hero-overlay { background: linear-gradient(90deg, rgba(8, 18, 26, .94) 0%, rgba(8, 18, 26, .74) 58%, rgba(8, 18, 26, .22) 100%); }
+        .hero .display { font-size: clamp(3.15rem, 14.4vw, 4.65rem); }
+        .hero-copy { max-width: 310px; margin: 21px 0 27px; font-size: .91rem; }
+        .hero-actions { align-items: stretch; flex-direction: column; width: min(265px, 100%); }
+        .btn { padding: 15px 18px; }
+        .rating { right: 18px; bottom: 28px; padding: 12px 14px; }
+        .rating strong { font-size: 1.65rem; }
+        .scroll-link { display: none; }
+        .proof-inner { grid-template-columns: 1fr; gap: 11px; padding: 16px 0; }
+        .proof-item { justify-content: flex-start; font-size: .53rem; }
+        .intro, .services, .process, .area, .quote { padding: 90px 0; }
+        .intro-grid, .services-head, .process-grid, .area-grid, .quote-grid { grid-template-columns: 1fr; gap: 30px; }
+        .intro-grid > .info-stack { display: grid; padding-top: 8px; }
+        .services::before { top: 40px; width: 58vw; }
+        .services::after { top: -16px; width: 53%; }
+        .services-head > p { display: block; margin-top: -4px; }
+        .services-head { margin-bottom: 40px; }
+        .services-grid { grid-template-columns: 1fr; gap: 15px; }
+        .service-image { height: 238px; }
+        .service-body p { min-height: auto; }
+        .process-grid, .area-grid, .quote-grid { gap: 42px; }
+        .map-card { min-height: 315px; box-shadow: 10px 10px 0 #10202a; }
+        .quote-form { box-shadow: 10px 10px 0 #d7ddd6; }
+        .quote-form::after { top: -18px; font-size: .39rem; }
+        .form-row { grid-template-columns: 1fr; gap: 0; }
+        .footer-top, .footer-bottom { align-items: flex-start; flex-direction: column; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="frame topbar-inner">
+        <p><span class="topbar-dot"></span> Groningen &amp; omgeving</p>
+        <a href="tel:+31638738226"><span class="phone-symbol">⌕</span> +31 6 38738226</a>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="frame header-inner">
+        <a class="brand" href="#top" aria-label="J.C. Drukreinigers — home">
+          <img src="assets/jc-pressure-gauge-logo.png" alt="J.C. Drukreinigers beeldmerk" />
+          <span class="brand-text"><strong>J.C.</strong><span>DRUKREINIGERS</span></span>
+        </a>
+        <nav class="nav" aria-label="Hoofdnavigatie">
+          <a href="#diensten">Diensten</a>
+          <a href="#werkwijze">Werkwijze</a>
+          <a href="#werkgebied">Werkgebied</a>
+        </nav>
+        <a class="header-cta" href="#offerte">Vrijblijvende prijs <span>↗</span></a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu openen" aria-expanded="false">☰</button>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobiele navigatie">
+        <a href="#diensten">Diensten</a>
+        <a href="#werkwijze">Werkwijze</a>
+        <a href="#werkgebied">Werkgebied</a>
+        <a href="#offerte">Prijsindicatie aanvragen</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <img class="hero-image" src="assets/jc-hero-driveway.jpg" alt="Professioneel gereinigde donkere stenen oprit bij een woning" />
+        <div class="hero-overlay"></div>
+        <div class="hero-cut"></div>
+        <div class="frame hero-content">
+          <div class="eyebrow">Buitenruimte, zichtbaar vernieuwd</div>
+          <h1 class="display">Laat je buitenruimte<br /><i>weer spreken.</i></h1>
+          <p class="hero-copy">Professionele drukreiniging voor terrassen, opritten, tuinpaden en meer in Groningen en omgeving.</p>
+          <div class="hero-actions">
+            <a class="btn btn-blue" href="#offerte">Vraag een prijs aan <span>↘</span></a>
+            <a class="btn btn-outline" href="https://wa.me/31638738226" target="_blank" rel="noreferrer">WhatsApp direct <span>↗</span></a>
+          </div>
+        </div>
+        <div class="rating" aria-label="Google beoordeling: 4,8 van 5 sterren">
+          <strong>4.8</strong>
+          <div><span class="rating-label">Google beoordeling</span><div class="stars">★★★★★</div></div>
+        </div>
+        <a class="scroll-link" href="#diensten">Ontdek de mogelijkheden <span class="scroll-arrow">↓</span></a>
+      </section>
+
+      <section class="proof" aria-label="Kernpunten">
+        <div class="frame proof-inner">
+          <p class="proof-item"><span class="proof-check">✓</span> Vrijblijvende prijsindicatie</p>
+          <p class="proof-item"><span class="proof-check">✓</span> Groningen &amp; omgeving</p>
+          <p class="proof-item"><span class="proof-check">✓</span> Snel en persoonlijk contact</p>
+        </div>
+      </section>
+
+      <section class="intro" id="werkwijze">
+        <div class="frame intro-grid">
+          <div class="eyebrow">01 — De kracht van schoon</div>
+          <div class="intro-copy">
+            <p class="kicker">Geen halve oplossing.</p>
+            <h2 class="display">De laag eraf.<br />De uitstraling terug.</h2>
+            <p class="body-copy">Groene aanslag en vervuiling nemen langzaam de uitstraling van je buitenruimte over. Met een grondige drukreiniging krijgen je tegels, paden en andere buitenoppervlakken weer hun frisse karakter terug.</p>
+            <a class="text-link" href="#offerte">Vertel wat er schoongemaakt mag worden <span>↗</span></a>
+          </div>
+          <div class="info-stack">
+            <div class="info-card"><span>Direct contact</span><a href="tel:+31638738226">Bel of app eenvoudig</a></div>
+            <div class="info-card info-card-blue"><span>Praktisch geregeld</span><b>Van eerste foto tot heldere prijsindicatie.</b></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="diensten">
+        <div class="frame">
+          <div class="services-head">
+            <div class="eyebrow">02 — Wat we reinigen</div>
+            <h2 class="display">Elke buitenruimte<br /><i>verdient een reset.</i></h2>
+            <p>Een professionele aanpak voor de plekken die je iedere dag ziet — en weer graag wilt gebruiken.</p>
+          </div>
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-image"><img src="assets/jc-service-terrace.jpg" alt="Schoon stenen terras bij een Nederlandse tuin" /><span class="service-number">01</span><span class="service-proof">OPPERVLAK / VERNIEUWD</span></div>
+              <div class="service-body"><h3>Terrassen &amp; tuinen</h3><p>Tegels, terrassen en tuinpaden weer fris en uitnodigend.</p><div class="service-result">◌ Meer licht. Minder aanslag.</div><a class="service-link" href="#offerte">Prijs aanvragen <span>↗</span></a></div>
+            </article>
+            <article class="service-card">
+              <div class="service-image"><img src="assets/jc-service-path.jpg" alt="Schoon bestraat tuinpad naast een woning" /><span class="service-number">02</span><span class="service-proof">OPPERVLAK / VERNIEUWD</span></div>
+              <div class="service-body"><h3>Opritten &amp; paden</h3><p>Een zichtbaar schonere entree, van oprit tot looppad.</p><div class="service-result">◌ Meer licht. Minder aanslag.</div><a class="service-link" href="#offerte">Prijs aanvragen <span>↗</span></a></div>
+            </article>
+            <article class="service-card">
+              <div class="service-image"><img src="assets/jc-service-facade.jpg" alt="Professionele reiniging van buitenwerk met een spuitlans" /><span class="service-number">03</span><span class="service-proof">OPPERVLAK / VERNIEUWD</span></div>
+              <div class="service-body"><h3>Buitenwerk</h3><p>Hardnekkige groene aanslag aanpakken op buitenoppervlakken.</p><div class="service-result">◌ Meer licht. Minder aanslag.</div><a class="service-link" href="#offerte">Prijs aanvragen <span>↗</span></a></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="process">
+        <div class="frame process-grid">
+          <div class="process-copy"><div class="eyebrow">03 — Simpel geregeld</div><h2 class="display">Van foto<br />naar <i>fris.</i></h2><p>Stuur een foto en een korte omschrijving. Daarna weet je snel waar je aan toe bent.</p></div>
+          <ol class="process-list">
+            <li><span class="step-number">1</span><div><h3>Stuur een foto</h3><p>Via WhatsApp zie ik direct om welk oppervlak het gaat.</p></div></li>
+            <li><span class="step-number">2</span><div><h3>Ontvang een indicatie</h3><p>Je krijgt een heldere, vrijblijvende reactie op jouw aanvraag.</p></div></li>
+            <li><span class="step-number">3</span><div><h3>Plan het moment</h3><p>We stemmen samen af wanneer jouw buitenruimte aangepakt wordt.</p></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="area" id="werkgebied">
+        <div class="frame area-grid">
+          <div class="area-copy"><div class="eyebrow">04 — Lokaal aan het werk</div><h2 class="display">Groningen<br />en omgeving.</h2><p>Gevestigd aan de Landstraat in Groningen. Neem contact op voor de mogelijkheden bij jou in de buurt.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Landstraat+6A%2C+9714+GR+Groningen" target="_blank" rel="noreferrer">Bekijk de locatie <span>↗</span></a></div>
+          <div class="map-card">
+            <span class="coordinates">53.2204° N / 6.5833° E</span>
+            <div class="pin"><span>●</span></div>
+            <div class="map-name">GRONINGEN</div>
+            <a class="map-address" href="https://www.google.com/maps/search/?api=1&query=Landstraat+6A%2C+9714+GR+Groningen" target="_blank" rel="noreferrer">⌖ <span>Landstraat 6A<br /><small>9714 GR Groningen</small></span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote" id="offerte">
+        <div class="frame quote-grid">
+          <div class="quote-copy">
+            <div class="eyebrow">05 — Vrijblijvende prijsindicatie</div>
+            <h2 class="display">Laat zien<br />wat <i>weer fris</i><br />mag worden.</h2>
+            <p>Vul het formulier in of stuur direct een foto via WhatsApp. Dan bekijken we samen de beste aanpak.</p>
+            <div class="surface-note"><span>RESULTAATGERICHT</span><b>Van groene aanslag naar een oppervlak dat weer klopt.</b></div>
+            <a class="contact-link" href="tel:+31638738226">⌕ +31 6 38738226</a>
+          </div>
+          <form class="quote-form" id="quote-form">
+            <div class="form-row">
+              <label><span>Je naam</span><input required name="name" autocomplete="name" placeholder="Voor- en achternaam" /></label>
+              <label><span>Postcode / plaats</span><input required name="postal" autocomplete="postal-code" placeholder="Bijv. 9714 GR Groningen" /></label>
+            </div>
+            <label><span>Wat mag er gereinigd worden?</span><select required name="service"><option value="" selected disabled>Kies een optie</option><option>Terras of tuinpad</option><option>Oprit of looppad</option><option>Gevel of buitenwerk</option><option>Anders / meerdere oppervlakken</option></select></label>
+            <label><span>Korte toelichting <small>(optioneel)</small></span><textarea name="message" rows="4" placeholder="Vertel kort iets over de plek of stuur een foto mee via WhatsApp."></textarea></label>
+            <button type="submit" class="btn btn-dark form-submit">Verstuur via WhatsApp <span>↗</span></button>
+            <p class="form-note">✓ Je bericht opent in WhatsApp; je kunt daar ook meteen foto’s toevoegen.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="frame footer-top">
+        <a class="brand" href="#top"><img src="assets/jc-pressure-gauge-logo.png" alt="" /><span class="brand-text"><strong>J.C.</strong><span>DRUKREINIGERS</span></span></a>
+        <a class="footer-call" href="tel:+31638738226">Bel direct <span>↗</span></a>
+      </div>
+      <div class="frame footer-bottom"><p>J.C. Drukreinigers · Landstraat 6A, 9714 GR Groningen</p><p>© <span id="year"></span> J.C. Drukreinigers</p></div>
+    </footer>
+
+    <script>
+      const menuButton = document.getElementById('menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      const closeMenu = () => {
+        mobileNav.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Menu openen');
+        menuButton.textContent = '☰';
+        document.body.classList.remove('menu-open');
+      };
+      menuButton.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+        menuButton.setAttribute('aria-label', isOpen ? 'Menu sluiten' : 'Menu openen');
+        menuButton.textContent = isOpen ? '×' : '☰';
+        document.body.classList.toggle('menu-open', isOpen);
+      });
+      mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+      document.getElementById('quote-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = new FormData(event.currentTarget);
+        const lines = [
+          'Hallo J.C. Drukreinigers, ik wil graag een vrijblijvende prijsindicatie.',
+          `Naam: ${form.get('name')}`,
+          `Werkzaamheden: ${form.get('service')}`,
+          `Postcode/plaats: ${form.get('postal')}`,
+          form.get('message') ? `Toelichting: ${form.get('message')}` : ''
+        ].filter(Boolean);
+        window.open(`https://wa.me/31638738226?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener,noreferrer');
+      });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
